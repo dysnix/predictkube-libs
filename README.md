@@ -1,1 +1,1 @@
-# ai-scale-libs
+# predictkube-libs
