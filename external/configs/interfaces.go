@@ -1,6 +1,9 @@
 package configs
 
 import (
+	"crypto/tls"
+
+	"github.com/valyala/fasthttp"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
@@ -26,6 +29,10 @@ type SingleUseGetter interface {
 	SingleEnabled() bool
 }
 
+type ServerGetter interface {
+	GetServerConfigs() *Single
+}
+
 type SingleGetter interface {
 	GetBase() *Base
 	GetGrpc() *GRPC
@@ -42,6 +49,66 @@ type LoggerSetter interface {
 
 type GrpcClientConnSetter interface {
 	SetGrpcClientConn(conn *grpc.ClientConn)
+}
+
+type ServerConfigSetter interface {
+	SetConfigs(configs ServerGetter)
+}
+
+type Route struct {
+	Method string
+	fasthttp.RequestHandler
+}
+
+type RoutesSetter interface {
+	SetRoutes(map[string]map[string]*Route)
+}
+
+type MiddlewaresSetter interface {
+	SetMiddlewares([]func(fasthttp.RequestHandler) fasthttp.RequestHandler)
+}
+
+type ServerSetters interface {
+	ServerConfigSetter
+	LoggerSetter
+	RoutesSetter
+	MiddlewaresSetter
+}
+
+type ServerOption func(ServerSetters) error
+
+func SetServerConfigs(conf ServerGetter) ServerOption {
+	return func(r ServerSetters) error {
+		if conf != nil {
+			r.SetConfigs(conf)
+		}
+		return nil
+	}
+}
+
+func SetServerLogger(logger *zap.SugaredLogger) ServerOption {
+	return func(r ServerSetters) error {
+		if logger != nil {
+			r.SetLogger(logger)
+		}
+		return nil
+	}
+}
+
+func SetRoutes(routes map[string]map[string]*Route) ServerOption {
+	return func(r ServerSetters) error {
+		if routes != nil {
+			r.SetRoutes(routes)
+		}
+		return nil
+	}
+}
+
+func SetMiddlewares(middlewares []func(fasthttp.RequestHandler) fasthttp.RequestHandler) ServerOption {
+	return func(r ServerSetters) error {
+		r.SetMiddlewares(middlewares)
+		return nil
+	}
 }
 
 type MainSetters interface {
@@ -74,6 +141,43 @@ func SetConn(conn *grpc.ClientConn) Option {
 	return func(r MainSetters) error {
 		if conn != nil && conn.GetState() == connectivity.Ready {
 			r.SetGrpcClientConn(conn)
+		}
+		return nil
+	}
+}
+
+type TransportGetter interface {
+	GetTransportConfigs() *HTTPTransport
+}
+
+type TransportConfigSetter interface {
+	SetConfigs(configs TransportGetter)
+}
+
+type TransportSetters interface {
+	TransportConfigSetter
+	TLSSetter
+}
+
+type TransportOption func(TransportSetters) error
+
+type TLSSetter interface {
+	SetTLS(*tls.Config)
+}
+
+func SetTransportConfigs(conf TransportGetter) TransportOption {
+	return func(r TransportSetters) error {
+		if conf != nil {
+			r.SetConfigs(conf)
+		}
+		return nil
+	}
+}
+
+func SetTLS(conf *tls.Config) TransportOption {
+	return func(r TransportSetters) error {
+		if conf != nil {
+			r.SetTLS(conf)
 		}
 		return nil
 	}

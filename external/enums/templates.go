@@ -21,7 +21,7 @@ const (
 	Disable                // SSLMode postgres connection string sslmode Disable
 )
 
-//go:generate go-enum -type=DeletionType
+//go:generate go-enum -type=DeletionType -transform=lower
 // DeletionType is type of gorm delete action
 type DeletionType int
 

@@ -265,7 +265,7 @@ type Connection struct {
 	ReadBufferSize  uint          `yaml:"readBufferSize" json:"read_buffer_size" validate:"required,gte=4096"`
 	WriteBufferSize uint          `yaml:"writeBufferSize" json:"write_buffer_size" validate:"required,gte=4096"`
 	MaxMessageSize  uint          `yaml:"maxMessageSize" json:"max_message_size" validate:"required,gte=2048"`
-	Insecure        bool          `yaml:"insecure" json:"insecure" validate:"required"`
+	Insecure        bool          `yaml:"insecure" json:"insecure"`
 	Timeout         time.Duration `yaml:"timeout" json:"timeout" validate:"gte=0"`
 }
 
@@ -611,6 +611,10 @@ type HTTPTransport struct {
 	MaxIdleConnDuration time.Duration `yaml:"maxIdleConnDuration" json:"max_idle_conn_duration" validate:"required,gt=0"`
 	ReadTimeout         time.Duration `yaml:"readTimeout" json:"read_timeout" validate:"required,gt=0"`
 	WriteTimeout        time.Duration `yaml:"writeTimeout" json:"write_timeout" validate:"required,gt=0"`
+}
+
+func (t *HTTPTransport) GetTransportConfigs() *HTTPTransport {
+	return t
 }
 
 func (t *HTTPTransport) MarshalJSON() ([]byte, error) {

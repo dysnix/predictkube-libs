@@ -16,12 +16,47 @@ import (
 // Transport implements the estransport interface with
 // the github.com/valyala/fasthttp HTTP client.
 type transport struct {
-	client *fasthttp.Client
+	client  *fasthttp.Client
+	conf    configs.TransportGetter
+	tlsConf *tls.Config
 }
 
 type FastHttpTransport interface {
 	http.RoundTripper
 	configs.SignalCloser
+}
+
+func NewHttpTransport(options ...configs.TransportOption) (out *transport, err error) {
+	out = &transport{client: &fasthttp.Client{}}
+
+	for _, op := range options {
+		err := op(out)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	if out.conf != nil {
+		out.client.MaxIdleConnDuration = out.conf.GetTransportConfigs().MaxIdleConnDuration
+		out.client.ReadTimeout = out.conf.GetTransportConfigs().ReadTimeout
+		out.client.WriteTimeout = out.conf.GetTransportConfigs().WriteTimeout
+	}
+
+	if out.tlsConf == nil {
+		out.client.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	} else {
+		out.client.TLSConfig = out.tlsConf
+	}
+
+	return out, nil
+}
+
+func (s *transport) SetConfigs(configs configs.TransportGetter) {
+	s.conf = configs
+}
+
+func (s *transport) SetTLS(conf *tls.Config) {
+	s.tlsConf = conf
 }
 
 func NewTransport(opts *configs.HTTPTransport, tlsConf ...tr.TLSConfig) *transport {
@@ -37,6 +72,7 @@ func NewTransport(opts *configs.HTTPTransport, tlsConf ...tr.TLSConfig) *transpo
 	} else {
 		tlsC = &tls.Config{InsecureSkipVerify: true}
 	}
+
 	return &transport{
 		client: &fasthttp.Client{
 			MaxIdleConnDuration: opts.MaxIdleConnDuration,
