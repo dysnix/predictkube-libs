@@ -83,3 +83,12 @@ func (i *KindType) AdaptFromProto(in enums.ResourceType) (out KindType) {
 	*i, _ = _kindTypeFromProto[in]
 	return *i
 }
+
+//go:generate go-enum -type=TransportType
+// TransportType is a type of HTTP transport lib usage
+type TransportType int
+
+const (
+	NetHTTP  TransportType = iota // NetHTTP transport from net/http package
+	FastHTTP                      // FastHTTP transport from github.com/valyala/fasthttp package
+)

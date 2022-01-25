@@ -13,7 +13,7 @@ import (
 	"github.com/dysnix/predictkube-libs/external/configs"
 )
 
-// Transport implements the estransport interface with
+// Transport implements the http.RoundTripper interface with
 // the github.com/valyala/fasthttp HTTP client.
 type transport struct {
 	client  *fasthttp.Client

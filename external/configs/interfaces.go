@@ -182,3 +182,27 @@ func SetTLS(conf *tls.Config) TransportOption {
 		return nil
 	}
 }
+
+type HTTPClientGetter interface {
+	GetHTTPClientConfigs() *HTTPClient
+}
+
+type HTTPClientConfigSetter interface {
+	SetConfigs(configs HTTPClientGetter)
+}
+
+type HTTPClientSetters interface {
+	HTTPClientConfigSetter
+	TLSSetter
+}
+
+type HTTPClientOption func(HTTPClientSetters) error
+
+func SetHTTPClientTLS(conf *tls.Config) HTTPClientOption {
+	return func(r HTTPClientSetters) error {
+		if conf != nil {
+			r.SetTLS(conf)
+		}
+		return nil
+	}
+}
