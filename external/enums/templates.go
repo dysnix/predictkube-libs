@@ -2,7 +2,7 @@ package enums
 
 import "github.com/dysnix/predictkube-proto/external/proto/enums"
 
-//go:generate go-enum -type=CompressionType
+//go:generate go-enum -type=CompressionType -transform=lower
 // CompressionType is an enumeration of GRPC traffic compression type values
 type CompressionType int
 
