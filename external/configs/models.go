@@ -608,34 +608,34 @@ func (ep *EnforcementPolicy) UnmarshalYAML(unmarshal func(interface{}) error) er
 }
 
 type NetHTTPTransport struct {
-	KeepAlive              time.Duration `yaml:"keepAlive" json:"keep_alive"`
-	TLSHandshakeTimeout    time.Duration `yaml:"tlsHandshakeTimeout" json:"tls_handshake_timeout"`
-	DialTimeout            time.Duration `yaml:"dialTimeout" json:"dial_timeout"`
-	ResponseHeaderTimeout  time.Duration `yaml:"responseHeaderTimeout" json:"response_header_timeout"`
-	ExpectContinueTimeout  time.Duration `yaml:"expectContinueTimeout" json:"expect_continue_timeout"`
+	KeepAlive              time.Duration `yaml:"keepAlive,omitempty" json:"keep_alive,omitempty"`
+	TLSHandshakeTimeout    time.Duration `yaml:"tlsHandshakeTimeout,omitempty" json:"tls_handshake_timeout,omitempty"`
+	DialTimeout            time.Duration `yaml:"dialTimeout,omitempty" json:"dial_timeout,omitempty"`
+	ResponseHeaderTimeout  time.Duration `yaml:"responseHeaderTimeout,omitempty" json:"response_header_timeout,omitempty"`
+	ExpectContinueTimeout  time.Duration `yaml:"expectContinueTimeout,omitempty" json:"expect_continue_timeout,omitempty"`
 	DisableKeepAlives      bool          `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
 	DisableCompression     bool          `yaml:"disableCompression" json:"disable_compression"`
-	MaxIdleConns           int           `yaml:"maxIdleConns" json:"max_idle_conns"`
-	MaxIdleConnsPerHost    int           `yaml:"maxIdleConnsPerHost" json:"max_idle_conns_per_host"`
-	MaxConnsPerHost        int           `yaml:"maxConnsPerHost" json:"max_conns_per_host"`
-	MaxResponseHeaderBytes int64         `yaml:"maxResponseHeaderBytes" json:"max_response_header_bytes"`
-	Buffer                 *Buffer
+	MaxIdleConns           int           `yaml:"maxIdleConns,omitempty" json:"max_idle_conns,omitempty"`
+	MaxIdleConnsPerHost    int           `yaml:"maxIdleConnsPerHost,omitempty" json:"max_idle_conns_per_host,omitempty"`
+	MaxConnsPerHost        int           `yaml:"maxConnsPerHost,omitempty" json:"max_conns_per_host,omitempty"`
+	MaxResponseHeaderBytes int64         `yaml:"maxResponseHeaderBytes,omitempty" json:"max_response_header_bytes,omitempty"`
+	Buffer                 *Buffer       `yaml:"buffer,omitempty" json:"buffer,omitempty"`
 }
 
 func (t *NetHTTPTransport) MarshalJSON() ([]byte, error) {
 	type alias struct {
-		KeepAlive              string `yaml:"keepAlive" json:"keep_alive"`
-		TLSHandshakeTimeout    string `yaml:"tlsHandshakeTimeout" json:"tls_handshake_timeout"`
-		DialTimeout            string `yaml:"dialTimeout" json:"dial_timeout"`
-		ResponseHeaderTimeout  string `yaml:"responseHeaderTimeout" json:"response_header_timeout"`
-		ExpectContinueTimeout  string `yaml:"expectContinueTimeout" json:"expect_continue_timeout"`
-		DisableKeepAlives      bool   `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
-		DisableCompression     bool   `yaml:"disableCompression" json:"disable_compression"`
-		MaxIdleConns           int    `yaml:"maxIdleConns" json:"max_idle_conns"`
-		MaxIdleConnsPerHost    int    `yaml:"maxIdleConnsPerHost" json:"max_idle_conns_per_host"`
-		MaxConnsPerHost        int    `yaml:"maxConnsPerHost" json:"max_conns_per_host"`
-		MaxResponseHeaderBytes string `yaml:"maxResponseHeaderBytes" json:"max_response_header_bytes"`
-		Buffer                 *Buffer
+		KeepAlive              string  `yaml:"keepAlive,omitempty" json:"keep_alive,omitempty"`
+		TLSHandshakeTimeout    string  `yaml:"tlsHandshakeTimeout,omitempty" json:"tls_handshake_timeout,omitempty"`
+		DialTimeout            string  `yaml:"dialTimeout,omitempty" json:"dial_timeout,omitempty"`
+		ResponseHeaderTimeout  string  `yaml:"responseHeaderTimeout,omitempty" json:"response_header_timeout,omitempty"`
+		ExpectContinueTimeout  string  `yaml:"expectContinueTimeout,omitempty" json:"expect_continue_timeout,omitempty"`
+		DisableKeepAlives      bool    `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
+		DisableCompression     bool    `yaml:"disableCompression" json:"disable_compression"`
+		MaxIdleConns           int     `yaml:"maxIdleConns,omitempty" json:"max_idle_conns,omitempty"`
+		MaxIdleConnsPerHost    int     `yaml:"maxIdleConnsPerHost,omitempty" json:"max_idle_conns_per_host,omitempty"`
+		MaxConnsPerHost        int     `yaml:"maxConnsPerHost,omitempty" json:"max_conns_per_host,omitempty"`
+		MaxResponseHeaderBytes string  `yaml:"maxResponseHeaderBytes,omitempty" json:"max_response_header_bytes,omitempty"`
+		Buffer                 *Buffer `yaml:"buffer,omitempty" json:"buffer,omitempty"`
 	}
 
 	if t == nil {
@@ -660,18 +660,18 @@ func (t *NetHTTPTransport) MarshalJSON() ([]byte, error) {
 
 func (t *NetHTTPTransport) UnmarshalJSON(data []byte) (err error) {
 	type alias struct {
-		KeepAlive              string `yaml:"keepAlive" json:"keep_alive"`
-		TLSHandshakeTimeout    string `yaml:"tlsHandshakeTimeout" json:"tls_handshake_timeout"`
-		DialTimeout            string `yaml:"dialTimeout" json:"dial_timeout"`
-		ResponseHeaderTimeout  string `yaml:"responseHeaderTimeout" json:"response_header_timeout"`
-		ExpectContinueTimeout  string `yaml:"expectContinueTimeout" json:"expect_continue_timeout"`
-		DisableKeepAlives      bool   `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
-		DisableCompression     bool   `yaml:"disableCompression" json:"disable_compression"`
-		MaxIdleConns           int    `yaml:"maxIdleConns" json:"max_idle_conns"`
-		MaxIdleConnsPerHost    int    `yaml:"maxIdleConnsPerHost" json:"max_idle_conns_per_host"`
-		MaxConnsPerHost        int    `yaml:"maxConnsPerHost" json:"max_conns_per_host"`
-		MaxResponseHeaderBytes string `yaml:"maxResponseHeaderBytes" json:"max_response_header_bytes"`
-		Buffer                 *Buffer
+		KeepAlive              string  `yaml:"keepAlive,omitempty" json:"keep_alive,omitempty"`
+		TLSHandshakeTimeout    string  `yaml:"tlsHandshakeTimeout,omitempty" json:"tls_handshake_timeout,omitempty"`
+		DialTimeout            string  `yaml:"dialTimeout,omitempty" json:"dial_timeout,omitempty"`
+		ResponseHeaderTimeout  string  `yaml:"responseHeaderTimeout,omitempty" json:"response_header_timeout,omitempty"`
+		ExpectContinueTimeout  string  `yaml:"expectContinueTimeout,omitempty" json:"expect_continue_timeout,omitempty"`
+		DisableKeepAlives      bool    `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
+		DisableCompression     bool    `yaml:"disableCompression" json:"disable_compression"`
+		MaxIdleConns           int     `yaml:"maxIdleConns,omitempty" json:"max_idle_conns,omitempty"`
+		MaxIdleConnsPerHost    int     `yaml:"maxIdleConnsPerHost,omitempty" json:"max_idle_conns_per_host,omitempty"`
+		MaxConnsPerHost        int     `yaml:"maxConnsPerHost,omitempty" json:"max_conns_per_host,omitempty"`
+		MaxResponseHeaderBytes string  `yaml:"maxResponseHeaderBytes,omitempty" json:"max_response_header_bytes,omitempty"`
+		Buffer                 *Buffer `yaml:"buffer,omitempty" json:"buffer,omitempty"`
 	}
 	var tmp alias
 	if err = json.Unmarshal(data, &tmp); err != nil {
@@ -682,33 +682,45 @@ func (t *NetHTTPTransport) UnmarshalJSON(data []byte) (err error) {
 		*t = NetHTTPTransport{}
 	}
 
-	t.KeepAlive, err = str2duration.ParseDuration(tmp.KeepAlive)
-	if err != nil {
-		return err
+	if len(tmp.KeepAlive) > 0 {
+		t.KeepAlive, err = str2duration.ParseDuration(tmp.KeepAlive)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.TLSHandshakeTimeout, err = str2duration.ParseDuration(tmp.TLSHandshakeTimeout)
-	if err != nil {
-		return err
+	if len(tmp.TLSHandshakeTimeout) > 0 {
+		t.TLSHandshakeTimeout, err = str2duration.ParseDuration(tmp.TLSHandshakeTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.DialTimeout, err = str2duration.ParseDuration(tmp.DialTimeout)
-	if err != nil {
-		return err
+	if len(tmp.DialTimeout) > 0 {
+		t.DialTimeout, err = str2duration.ParseDuration(tmp.DialTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.ResponseHeaderTimeout, err = str2duration.ParseDuration(tmp.ResponseHeaderTimeout)
-	if err != nil {
-		return err
+	if len(tmp.ResponseHeaderTimeout) > 0 {
+		t.ResponseHeaderTimeout, err = str2duration.ParseDuration(tmp.ResponseHeaderTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.ExpectContinueTimeout, err = str2duration.ParseDuration(tmp.ExpectContinueTimeout)
-	if err != nil {
-		return err
+	if len(tmp.ExpectContinueTimeout) > 0 {
+		t.ExpectContinueTimeout, err = str2duration.ParseDuration(tmp.ExpectContinueTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	if t.MaxResponseHeaderBytes, err = tc.RAMInBytes(tmp.MaxResponseHeaderBytes); err != nil {
-		return err
+	if len(tmp.MaxResponseHeaderBytes) > 0 {
+		if t.MaxResponseHeaderBytes, err = tc.RAMInBytes(tmp.MaxResponseHeaderBytes); err != nil {
+			return err
+		}
 	}
 
 	t.DisableKeepAlives = tmp.DisableKeepAlives
@@ -722,18 +734,18 @@ func (t *NetHTTPTransport) UnmarshalJSON(data []byte) (err error) {
 
 func (t *NetHTTPTransport) MarshalYAML() (interface{}, error) {
 	type alias struct {
-		KeepAlive              string `yaml:"keepAlive" json:"keep_alive"`
-		TLSHandshakeTimeout    string `yaml:"tlsHandshakeTimeout" json:"tls_handshake_timeout"`
-		DialTimeout            string `yaml:"dialTimeout" json:"dial_timeout"`
-		ResponseHeaderTimeout  string `yaml:"responseHeaderTimeout" json:"response_header_timeout"`
-		ExpectContinueTimeout  string `yaml:"expectContinueTimeout" json:"expect_continue_timeout"`
-		DisableKeepAlives      bool   `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
-		DisableCompression     bool   `yaml:"disableCompression" json:"disable_compression"`
-		MaxIdleConns           int    `yaml:"maxIdleConns" json:"max_idle_conns"`
-		MaxIdleConnsPerHost    int    `yaml:"maxIdleConnsPerHost" json:"max_idle_conns_per_host"`
-		MaxConnsPerHost        int    `yaml:"maxConnsPerHost" json:"max_conns_per_host"`
-		MaxResponseHeaderBytes string `yaml:"maxResponseHeaderBytes" json:"max_response_header_bytes"`
-		Buffer                 *Buffer
+		KeepAlive              string  `yaml:"keepAlive,omitempty" json:"keep_alive,omitempty"`
+		TLSHandshakeTimeout    string  `yaml:"tlsHandshakeTimeout,omitempty" json:"tls_handshake_timeout,omitempty"`
+		DialTimeout            string  `yaml:"dialTimeout,omitempty" json:"dial_timeout,omitempty"`
+		ResponseHeaderTimeout  string  `yaml:"responseHeaderTimeout,omitempty" json:"response_header_timeout,omitempty"`
+		ExpectContinueTimeout  string  `yaml:"expectContinueTimeout,omitempty" json:"expect_continue_timeout,omitempty"`
+		DisableKeepAlives      bool    `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
+		DisableCompression     bool    `yaml:"disableCompression" json:"disable_compression"`
+		MaxIdleConns           int     `yaml:"maxIdleConns,omitempty" json:"max_idle_conns,omitempty"`
+		MaxIdleConnsPerHost    int     `yaml:"maxIdleConnsPerHost,omitempty" json:"max_idle_conns_per_host,omitempty"`
+		MaxConnsPerHost        int     `yaml:"maxConnsPerHost,omitempty" json:"max_conns_per_host,omitempty"`
+		MaxResponseHeaderBytes string  `yaml:"maxResponseHeaderBytes,omitempty" json:"max_response_header_bytes,omitempty"`
+		Buffer                 *Buffer `yaml:"buffer,omitempty" json:"buffer,omitempty"`
 	}
 
 	if t == nil {
@@ -758,18 +770,18 @@ func (t *NetHTTPTransport) MarshalYAML() (interface{}, error) {
 
 func (t *NetHTTPTransport) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	type alias struct {
-		KeepAlive              string `yaml:"keepAlive" json:"keep_alive"`
-		TLSHandshakeTimeout    string `yaml:"tlsHandshakeTimeout" json:"tls_handshake_timeout"`
-		DialTimeout            string `yaml:"dialTimeout" json:"dial_timeout"`
-		ResponseHeaderTimeout  string `yaml:"responseHeaderTimeout" json:"response_header_timeout"`
-		ExpectContinueTimeout  string `yaml:"expectContinueTimeout" json:"expect_continue_timeout"`
-		DisableKeepAlives      bool   `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
-		DisableCompression     bool   `yaml:"disableCompression" json:"disable_compression"`
-		MaxIdleConns           int    `yaml:"maxIdleConns" json:"max_idle_conns"`
-		MaxIdleConnsPerHost    int    `yaml:"maxIdleConnsPerHost" json:"max_idle_conns_per_host"`
-		MaxConnsPerHost        int    `yaml:"maxConnsPerHost" json:"max_conns_per_host"`
-		MaxResponseHeaderBytes string `yaml:"maxResponseHeaderBytes" json:"max_response_header_bytes"`
-		Buffer                 *Buffer
+		KeepAlive              string  `yaml:"keepAlive,omitempty" json:"keep_alive,omitempty"`
+		TLSHandshakeTimeout    string  `yaml:"tlsHandshakeTimeout,omitempty" json:"tls_handshake_timeout,omitempty"`
+		DialTimeout            string  `yaml:"dialTimeout,omitempty" json:"dial_timeout,omitempty"`
+		ResponseHeaderTimeout  string  `yaml:"responseHeaderTimeout,omitempty" json:"response_header_timeout,omitempty"`
+		ExpectContinueTimeout  string  `yaml:"expectContinueTimeout,omitempty" json:"expect_continue_timeout,omitempty"`
+		DisableKeepAlives      bool    `yaml:"disableKeepAlives" json:"disable_Keep_alives"`
+		DisableCompression     bool    `yaml:"disableCompression" json:"disable_compression"`
+		MaxIdleConns           int     `yaml:"maxIdleConns,omitempty" json:"max_idle_conns,omitempty"`
+		MaxIdleConnsPerHost    int     `yaml:"maxIdleConnsPerHost,omitempty" json:"max_idle_conns_per_host,omitempty"`
+		MaxConnsPerHost        int     `yaml:"maxConnsPerHost,omitempty" json:"max_conns_per_host,omitempty"`
+		MaxResponseHeaderBytes string  `yaml:"maxResponseHeaderBytes,omitempty" json:"max_response_header_bytes,omitempty"`
+		Buffer                 *Buffer `yaml:"buffer,omitempty" json:"buffer,omitempty"`
 	}
 	var tmp alias
 	err := unmarshal(&tmp)
@@ -781,33 +793,45 @@ func (t *NetHTTPTransport) UnmarshalYAML(unmarshal func(interface{}) error) erro
 		*t = NetHTTPTransport{}
 	}
 
-	t.KeepAlive, err = str2duration.ParseDuration(tmp.KeepAlive)
-	if err != nil {
-		return err
+	if len(tmp.KeepAlive) > 0 {
+		t.KeepAlive, err = str2duration.ParseDuration(tmp.KeepAlive)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.TLSHandshakeTimeout, err = str2duration.ParseDuration(tmp.TLSHandshakeTimeout)
-	if err != nil {
-		return err
+	if len(tmp.TLSHandshakeTimeout) > 0 {
+		t.TLSHandshakeTimeout, err = str2duration.ParseDuration(tmp.TLSHandshakeTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.DialTimeout, err = str2duration.ParseDuration(tmp.DialTimeout)
-	if err != nil {
-		return err
+	if len(tmp.DialTimeout) > 0 {
+		t.DialTimeout, err = str2duration.ParseDuration(tmp.DialTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.ResponseHeaderTimeout, err = str2duration.ParseDuration(tmp.ResponseHeaderTimeout)
-	if err != nil {
-		return err
+	if len(tmp.ResponseHeaderTimeout) > 0 {
+		t.ResponseHeaderTimeout, err = str2duration.ParseDuration(tmp.ResponseHeaderTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	t.ExpectContinueTimeout, err = str2duration.ParseDuration(tmp.ExpectContinueTimeout)
-	if err != nil {
-		return err
+	if len(tmp.ExpectContinueTimeout) > 0 {
+		t.ExpectContinueTimeout, err = str2duration.ParseDuration(tmp.ExpectContinueTimeout)
+		if err != nil {
+			return err
+		}
 	}
 
-	if t.MaxResponseHeaderBytes, err = tc.RAMInBytes(tmp.MaxResponseHeaderBytes); err != nil {
-		return err
+	if len(tmp.MaxResponseHeaderBytes) > 0 {
+		if t.MaxResponseHeaderBytes, err = tc.RAMInBytes(tmp.MaxResponseHeaderBytes); err != nil {
+			return err
+		}
 	}
 
 	t.DisableKeepAlives = tmp.DisableKeepAlives
@@ -820,7 +844,7 @@ func (t *NetHTTPTransport) UnmarshalYAML(unmarshal func(interface{}) error) erro
 }
 
 type HTTPTransport struct {
-	MaxIdleConnDuration time.Duration     `yaml:"maxIdleConnDuration" json:"max_idle_conn_duration" validate:"required,gt=0"`
+	MaxIdleConnDuration time.Duration     `yaml:"maxIdleConnDuration" json:"max_idle_conn_duration"`
 	ReadTimeout         time.Duration     `yaml:"readTimeout" json:"read_timeout" validate:"required,gt=0"`
 	WriteTimeout        time.Duration     `yaml:"writeTimeout" json:"write_timeout" validate:"required,gt=0"`
 	NetTransport        *NetHTTPTransport `yaml:"netTransport,omitempty" json:"net_transport,omitempty" validate:"omitempty"`
@@ -1158,6 +1182,121 @@ func (ct *ClientTransport) UnmarshalYAML(unmarshal func(interface{}) error) erro
 	ct.TCPKeepalive = tmp.TCPKeepalive
 
 	ct.Timeout, err = str2duration.ParseDuration(tmp.Timeout)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+type Server struct {
+	Host          string        `validate:"host_if_enabled"`
+	Port          uint16        `validate:"port_if_enabled"`
+	Keepalive     bool          `yaml:"keepalive,omitempty" json:"keepalive,omitempty"`
+	RequestPause  time.Duration `yaml:"requestsPause" json:"requests_pause"`
+	HTTPTransport HTTPTransport
+}
+
+func (s *Server) MarshalYAML() (interface{}, error) {
+	type alias struct {
+		Host          string `validate:"host_if_enabled"`
+		Port          uint16 `validate:"port_if_enabled"`
+		Keepalive     bool   `yaml:"keepalive,omitempty" json:"keepalive,omitempty"`
+		RequestPause  string `yaml:"requestsPause" json:"requests_pause"`
+		HTTPTransport HTTPTransport
+	}
+
+	if s == nil {
+		*s = Server{}
+	}
+
+	return alias{
+		Host:          s.Host,
+		Port:          s.Port,
+		Keepalive:     s.Keepalive,
+		RequestPause:  HumanDuration(s.RequestPause),
+		HTTPTransport: s.HTTPTransport,
+	}, nil
+}
+
+func (s *Server) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	type alias struct {
+		Host          string `validate:"host_if_enabled"`
+		Port          uint16 `validate:"port_if_enabled"`
+		Keepalive     bool   `yaml:"keepalive,omitempty" json:"keepalive,omitempty"`
+		RequestPause  string `yaml:"requestsPause" json:"requests_pause"`
+		HTTPTransport HTTPTransport
+	}
+
+	var tmp alias
+	err := unmarshal(&tmp)
+	if err != nil {
+		return err
+	}
+
+	if s == nil {
+		*s = Server{}
+	}
+
+	s.Host = tmp.Host
+	s.Port = tmp.Port
+	s.Keepalive = tmp.Keepalive
+	s.HTTPTransport = tmp.HTTPTransport
+
+	s.RequestPause, err = str2duration.ParseDuration(tmp.RequestPause)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *Server) MarshalJSON() ([]byte, error) {
+	type alias struct {
+		Host          string `validate:"host_if_enabled"`
+		Port          uint16 `validate:"port_if_enabled"`
+		Keepalive     bool   `yaml:"keepalive,omitempty" json:"keepalive,omitempty"`
+		RequestPause  string `yaml:"requestsPause" json:"requests_pause"`
+		HTTPTransport HTTPTransport
+	}
+
+	if s == nil {
+		*s = Server{}
+	}
+
+	return json.Marshal(alias{
+		Host:          s.Host,
+		Port:          s.Port,
+		Keepalive:     s.Keepalive,
+		RequestPause:  HumanDuration(s.RequestPause),
+		HTTPTransport: s.HTTPTransport,
+	})
+}
+
+func (s *Server) UnmarshalJSON(data []byte) (err error) {
+	type alias struct {
+		Host          string `validate:"host_if_enabled"`
+		Port          uint16 `validate:"port_if_enabled"`
+		Keepalive     bool   `yaml:"keepalive,omitempty" json:"keepalive,omitempty"`
+		RequestPause  string `yaml:"requestsPause" json:"requests_pause"`
+		HTTPTransport HTTPTransport
+	}
+
+	var tmp alias
+	if err = json.Unmarshal(data, &tmp); err != nil {
+		return err
+	}
+
+	if s == nil {
+		*s = Server{}
+	}
+
+	s.Host = tmp.Host
+	s.Port = tmp.Port
+	s.Keepalive = tmp.Keepalive
+	s.HTTPTransport = tmp.HTTPTransport
+
+	s.RequestPause, err = str2duration.ParseDuration(tmp.RequestPause)
 	if err != nil {
 		return err
 	}
