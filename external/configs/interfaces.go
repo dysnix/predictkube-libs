@@ -33,6 +33,39 @@ type ServerGetter interface {
 	GetServerConfigs() *Single
 }
 
+type CacheGetter interface {
+	GetCache() *Cache
+}
+
+type CacheConfigSetter interface {
+	SetCache(configs CacheGetter)
+}
+
+type CacheSetters interface {
+	CacheConfigSetter
+	LoggerSetter
+}
+
+type CacheOption func(CacheSetters) error
+
+func SetCache(conf CacheGetter) CacheOption {
+	return func(r CacheSetters) error {
+		if conf != nil {
+			r.SetCache(conf)
+		}
+		return nil
+	}
+}
+
+func SetCacheLogger(logger *zap.SugaredLogger) CacheOption {
+	return func(r CacheSetters) error {
+		if logger != nil {
+			r.SetLogger(logger)
+		}
+		return nil
+	}
+}
+
 type SingleGetter interface {
 	GetBase() *Base
 	GetGrpc() *GRPC
