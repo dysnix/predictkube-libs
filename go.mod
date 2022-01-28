@@ -3,12 +3,9 @@ module github.com/dysnix/predictkube-libs
 go 1.16
 
 require (
-	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/brianvoe/gofakeit/v6 v6.9.0
-	github.com/buraksezer/olric v0.4.2
 	github.com/bxcodec/faker/v3 v3.6.0
 	github.com/dysnix/predictkube-proto v0.0.0-20211223141524-d309509b6b5f
-	github.com/dysnix/rpc-proxy-cacher v0.1.0
 	github.com/fasthttp/router v1.4.4
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/go-redis/redis/v8 v8.11.4
