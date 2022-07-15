@@ -13,7 +13,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
-	github.com/klauspost/compress v1.13.6
+	github.com/klauspost/compress v1.15.0
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
@@ -21,7 +21,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/stretchr/testify v1.7.0
 	github.com/ulikunitz/unixtime v0.1.2
-	github.com/valyala/fasthttp v1.31.0
+	github.com/valyala/fasthttp v1.38.0
 	github.com/wagslane/go-password-validator v0.3.0
 	github.com/xhit/go-str2duration/v2 v2.0.0
 	go.uber.org/zap v1.19.0
