@@ -9,7 +9,7 @@ require (
 	github.com/fasthttp/router v1.4.10
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/go-redis/redis/v8 v8.11.4
-	github.com/golang/protobuf v1.5.2
+	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
@@ -27,7 +27,7 @@ require (
 	go.uber.org/zap v1.19.0
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 	google.golang.org/grpc v1.42.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.33.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/gorm v1.22.4
