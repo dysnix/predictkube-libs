@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.9.0
-	github.com/bxcodec/faker/v3 v3.6.0
+	github.com/bxcodec/faker/v3 v3.8.1
 	github.com/dysnix/predictkube-proto v0.0.0-20220713123213-7135dce1e9c9
 	github.com/fasthttp/router v1.4.10
 	github.com/go-playground/validator/v10 v10.9.0
