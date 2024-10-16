@@ -1,6 +1,8 @@
 module github.com/dysnix/predictkube-libs
 
-go 1.17
+go 1.21
+
+toolchain go1.23.2
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.9.0
@@ -27,7 +29,7 @@ require (
 	go.uber.org/zap v1.19.0
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 	google.golang.org/grpc v1.42.0
-	google.golang.org/protobuf v1.33.0
+	google.golang.org/protobuf v1.35.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/gorm v1.22.4
