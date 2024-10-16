@@ -1,9 +1,11 @@
 module github.com/dysnix/predictkube-libs
 
-go 1.17
+go 1.21
+
+toolchain go1.23.1
 
 require (
-	github.com/brianvoe/gofakeit/v6 v6.9.0
+	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/bxcodec/faker/v3 v3.6.0
 	github.com/dysnix/predictkube-proto v0.0.0-20220713123213-7135dce1e9c9
 	github.com/fasthttp/router v1.4.10
