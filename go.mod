@@ -30,7 +30,7 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/gorm v1.22.4
-	gotest.tools/v3 v3.0.3
+	gotest.tools/v3 v3.5.2
 	k8s.io/client-go v0.31.7
 )
 
