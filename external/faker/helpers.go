@@ -1,12 +1,12 @@
 package faker
 
 import (
-	"github.com/google/uuid"
-	"reflect"
+	"math/rand"
 	"time"
 
+	"github.com/google/uuid"
+
 	"github.com/brianvoe/gofakeit/v6"
-	"github.com/bxcodec/faker/v3"
 
 	tc "github.com/dysnix/predictkube-libs/external/types_convertation"
 	pb "github.com/dysnix/predictkube-proto/external/proto/commonproto"
@@ -14,52 +14,63 @@ import (
 )
 
 // MetricsGenerator function for generate random metrics response from Provider
-func MetricsGenerator(diffDuration time.Duration, existUUID ...string) (err error) {
-	if err = faker.AddProvider("uuidHyphenated", func(v reflect.Value) (interface{}, error) {
-		if len(existUUID) > 0 {
-			id, err := uuid.Parse(existUUID[0])
-			if err != nil {
-				return nil, err
+func MetricsGenerator(diffDuration time.Duration, existUUID ...string) error {
+	// Register custom functions with gofakeit
+	gofakeit.AddFuncLookup("uuidHyphenated", gofakeit.Info{
+		Category:    "custom",
+		Description: "Generate a UUID",
+		Example:     "123e4567-e89b-12d3-a456-426614174000",
+		Output:      "string",
+		Generate: func(r *rand.Rand, m *gofakeit.MapParams, info *gofakeit.Info) (interface{}, error) {
+			if len(existUUID) > 0 {
+				id, err := uuid.Parse(existUUID[0])
+				if err != nil {
+					return "", err
+				}
+				return id.String(), nil
 			}
 
+			id, err := uuid.NewUUID()
+			if err != nil {
+				return "", err
+			}
 			return id.String(), nil
-		}
+		},
+	})
 
-		id, err := uuid.NewUUID()
-		if err != nil {
-			return nil, err
-		}
+	gofakeit.AddFuncLookup("unixTime", gofakeit.Info{
+		Category:    "custom",
+		Description: "Generate a Unix timestamp",
+		Example:     "1234567890",
+		Output:      "uint64",
+		Generate: func(r *rand.Rand, m *gofakeit.MapParams, info *gofakeit.Info) (interface{}, error) {
+			start := time.Now()
+			t := gofakeit.DateRange(start.Add(-diffDuration), start)
+			return uint64(t.Unix()), nil
+		},
+	})
 
-		return id.String(), nil
-	}); err != nil {
-		return err
-	}
+	gofakeit.AddFuncLookup("metricsSlice", gofakeit.Info{
+		Category:    "custom",
+		Description: "Generate a slice of metric values",
+		Example:     "[{...}]",
+		Output:      "[]*pb.MetricValue",
+		Generate: func(r *rand.Rand, m *gofakeit.MapParams, info *gofakeit.Info) (interface{}, error) {
+			var result []*pb.MetricValue
 
-	if err = faker.AddProvider("unixTime", func(v reflect.Value) (interface{}, error) {
-		start := time.Now()
-		t := gofakeit.DateRange(start.Add(-diffDuration), start)
-		return uint64(t.Unix()), nil
-	}); err != nil {
-		return err
-	}
+			for i := 0; i < gofakeit.Number(1, 10); i++ {
+				tmpMetricType := gofakeit.Number(0, 6)
+				tmpPrometheusResponseType := gofakeit.Number(0, 3)
+				result = append(result, &pb.MetricValue{
+					MetricType:             enums.MetricsType(tmpMetricType),
+					PrometheusResponseType: enums.ValueType(tmpPrometheusResponseType),
+					Values:                 generateRandItemsSlice(1, 10, diffDuration),
+				})
+			}
 
-	if err = faker.AddProvider("metricsSlice", func(v reflect.Value) (interface{}, error) {
-		var result []*pb.MetricValue
-
-		for i := 0; i < gofakeit.Number(1, 10); i++ {
-			tmpMetricType := gofakeit.Number(0, 6)
-			tmpPrometheusResponseType := gofakeit.Number(0, 3)
-			result = append(result, &pb.MetricValue{
-				MetricType:             enums.MetricsType(tmpMetricType),
-				PrometheusResponseType: enums.ValueType(tmpPrometheusResponseType),
-				Values:                 generateRandItemsSlice(1, 10, diffDuration),
-			})
-		}
-
-		return result, nil
-	}); err != nil {
-		return err
-	}
+			return result, nil
+		},
+	})
 
 	return nil
 }

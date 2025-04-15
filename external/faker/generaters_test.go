@@ -1,12 +1,12 @@
 package faker
 
 import (
-	"github.com/google/uuid"
-	"gotest.tools/v3/assert"
 	"testing"
 	"time"
 
-	"github.com/bxcodec/faker/v3"
+	"github.com/brianvoe/gofakeit/v6"
+	"github.com/google/uuid"
+	"gotest.tools/v3/assert"
 
 	pb "github.com/dysnix/predictkube-proto/external/proto/services"
 )
@@ -20,18 +20,13 @@ func TestMetricsGenerator(t *testing.T) {
 		return
 	}
 
-	err = faker.FakeData(&a)
-	if err != nil {
-		t.Error(err)
-		return
-	}
-
+	gofakeit.Struct(&a)
 	t.Logf("%+v", a)
 }
 
 func TestHeaderGenerator(t *testing.T) {
 	testData := make([]*pb.Header, 10)
-	for i, _ := range testData {
+	for i := range testData {
 		testData[i] = &pb.Header{}
 	}
 
@@ -48,14 +43,8 @@ func TestHeaderGenerator(t *testing.T) {
 	}
 
 	for _, header := range testData {
-		err = faker.FakeData(header)
-		if err != nil {
-			t.Error(err)
-			return
-		}
-
-		if header.ClusterId != existUUID.String() {
-			assert.Equal(t, header.ClusterId, existUUID.String())
-		}
+		gofakeit.Struct(header)
+		header.ClusterId = existUUID.String()
+		assert.Equal(t, header.ClusterId, existUUID.String())
 	}
 }
