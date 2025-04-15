@@ -22,7 +22,6 @@ func (t tmpStruct) SingleEnabled() bool {
 }
 
 func TestValidateRequiredIfNotEmpty(t *testing.T) {
-
 	var cases = []struct {
 		name string
 		opts []*tmpStruct
@@ -37,8 +36,8 @@ func TestValidateRequiredIfNotEmpty(t *testing.T) {
 					SomeCron:       "* * * * *",
 					Profiling: Profiling{
 						Enabled: true,
-						//Host:    "",
-						//Port:    0,
+						Host:    "localhost",
+						Port:    8080,
 					},
 					Single: &Single{
 						Enabled:     false,
@@ -127,8 +126,6 @@ func TestValidateRequiredIfNotEmpty(t *testing.T) {
 
 	testValidator := validator.New()
 
-	//assert.NoError(t, testValidator.Var(Client{ClusterID: "6900cfdc-38a5-11ec-9742-acde48001122"}, "uuid"))
-
 	for i := range cases {
 		tc := cases[i]
 		t.Run(tc.name, func(t *testing.T) {
@@ -141,6 +138,10 @@ func TestValidateRequiredIfNotEmpty(t *testing.T) {
 					for _, err := range valErr {
 						assert.Equal(t, tc.want, err.Error())
 					}
+				} else if err != nil {
+					assert.Equal(t, tc.want, err.Error())
+				} else {
+					assert.Equal(t, tc.want, "")
 				}
 			}
 		})
