@@ -3,7 +3,7 @@ module github.com/dysnix/predictkube-libs
 go 1.23.8
 
 require (
-	github.com/brianvoe/gofakeit/v6 v6.9.0
+	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/dysnix/predictkube-proto v0.0.0-20250415001839-52f1a05b7b01
 	github.com/fasthttp/router v1.4.10
 	github.com/go-playground/validator/v10 v10.26.0
