@@ -6,7 +6,7 @@ require (
 	github.com/brianvoe/gofakeit/v6 v6.9.0
 	github.com/dysnix/predictkube-proto v0.0.0-20250415001839-52f1a05b7b01
 	github.com/fasthttp/router v1.4.10
-	github.com/go-playground/validator/v10 v10.26.0
+	github.com/go-playground/validator/v10 v10.27.0
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.6.0
