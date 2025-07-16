@@ -31,7 +31,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/gorm v1.22.4
 	gotest.tools/v3 v3.0.3
-	k8s.io/client-go v0.31.7
+	k8s.io/client-go v0.33.3
 )
 
 require (
