@@ -20,7 +20,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/stretchr/testify v1.10.0
 	github.com/ulikunitz/unixtime v0.1.2
-	github.com/valyala/fasthttp v1.51.0
+	github.com/valyala/fasthttp v1.53.0
 	github.com/wagslane/go-password-validator v0.3.0
 	github.com/xhit/go-str2duration/v2 v2.1.0
 	go.uber.org/zap v1.27.0
@@ -35,7 +35,7 @@ require (
 )
 
 require (
-	github.com/andybalholm/brotli v1.0.5 // indirect
+	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
