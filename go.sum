@@ -16,6 +16,8 @@ github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/r
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
 github.com/dysnix/predictkube-proto v0.0.0-20250415001839-52f1a05b7b01 h1:VkBYJM3Ui33Vez+6tQrGRU/kXfjMC+8+vnc6rz1o1LQ=
 github.com/dysnix/predictkube-proto v0.0.0-20250415001839-52f1a05b7b01/go.mod h1:kx1DeePrunRsSlYET5I0u4kEAgFNtFizLO76LQYWuWc=
+github.com/dysnix/predictkube-proto v0.0.0-20250415003810-aa0af0a0019b h1:qrTX94ppT/kcB5IMIEQ8wUiXY5LIx7LXQ9+OkAeS3W8=
+github.com/dysnix/predictkube-proto v0.0.0-20250415003810-aa0af0a0019b/go.mod h1:kx1DeePrunRsSlYET5I0u4kEAgFNtFizLO76LQYWuWc=
 github.com/fasthttp/router v1.4.10 h1:C8z6K1pTqhLjSv97/qCY9tZiiPT8JuFwDoO9E2HJFWQ=
 github.com/fasthttp/router v1.4.10/go.mod h1:FGSUOg9SQ/tU864SfD23kG/HwfD0akXqOqhTQ27gTFQ=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
