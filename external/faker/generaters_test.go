@@ -12,7 +12,7 @@ import (
 )
 
 func TestMetricsGenerator(t *testing.T) {
-	a := pb.ReqSendMetrics{}
+	a := &pb.ReqSendMetrics{}
 
 	err := MetricsGenerator(time.Hour)
 	if err != nil {
@@ -20,7 +20,7 @@ func TestMetricsGenerator(t *testing.T) {
 		return
 	}
 
-	gofakeit.Struct(&a)
+	gofakeit.Struct(a)
 	t.Logf("%+v", a)
 }
 
