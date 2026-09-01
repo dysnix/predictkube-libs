@@ -7,7 +7,7 @@ require (
 	github.com/dysnix/predictkube-proto v0.0.0-20250415001839-52f1a05b7b01
 	github.com/fasthttp/router v1.4.10
 	github.com/go-playground/validator/v10 v10.26.0
-	github.com/go-redis/redis/v8 v8.11.4
+	github.com/go-redis/redis/v8 v8.11.5
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0
 	github.com/klauspost/compress v1.18.0
