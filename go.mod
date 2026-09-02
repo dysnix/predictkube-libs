@@ -21,7 +21,7 @@ require (
 	github.com/valyala/fasthttp v1.51.0
 	github.com/wagslane/go-password-validator v0.3.0
 	github.com/xhit/go-str2duration/v2 v2.1.0
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.28.0
 	golang.org/x/sync v0.16.0
 	google.golang.org/grpc v1.71.1
 	google.golang.org/protobuf v1.36.8
