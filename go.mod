@@ -1,6 +1,6 @@
 module github.com/dysnix/predictkube-libs
 
-go 1.23.8
+go 1.25
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.9.0
@@ -10,7 +10,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.1.0
-	github.com/klauspost/compress v1.18.0
+	github.com/klauspost/compress v1.20.0
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
