@@ -1,6 +1,6 @@
 module github.com/dysnix/predictkube-libs
 
-go 1.23.8
+go 1.25.0
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.9.0
@@ -22,7 +22,7 @@ require (
 	github.com/wagslane/go-password-validator v0.3.0
 	github.com/xhit/go-str2duration/v2 v2.1.0
 	go.uber.org/zap v1.27.0
-	golang.org/x/sync v0.16.0
+	golang.org/x/sync v0.22.0
 	google.golang.org/grpc v1.71.1
 	google.golang.org/protobuf v1.36.8
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
